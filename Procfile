@@ -1,1 +1,1 @@
-web: gunicorn proyecto.wsgi --bind 0.0.0.0:$PORT
+web: gunicorn proyecto.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --workers ${WEB_CONCURRENCY:-2}
