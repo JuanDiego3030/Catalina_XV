@@ -11,6 +11,15 @@ from app1.models import Ubicacion, Invitacion, FechaEvento, Invitado, Playlist, 
 from datetime import date
 from django.http import HttpResponse
 import csv
+from django.template.loader import render_to_string
+import io
+import zipfile
+from datetime import datetime
+
+try:
+    from weasyprint import HTML
+except Exception:
+    HTML = None
 
 def login(request):
     if request.method == 'POST':
@@ -299,18 +308,56 @@ def logout(request):
     return redirect('login')
 
 def export_confirmed_guests(request):
-    # Create the HttpResponse object with the appropriate CSV header.
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="confirmed_guests_and_songs.csv"'
+    # Generar dos plantillas HTML y convertirlas a PDF, luego empaquetar en ZIP
+    if HTML is None:
+        return HttpResponse("La biblioteca 'WeasyPrint' no está instalada. Instale 'WeasyPrint' para habilitar la exportación a PDF.", status=500)
 
-    writer = csv.writer(response)
-    writer.writerow(['Nombre', 'Apellido', 'Canción', 'Artista'])
+    # Datos
+    confirmed_guests = Invitado.objects.filter(confirmado=True).order_by('nombre', 'apellido')
 
-    # Fetch confirmed guests and their suggested songs
-    confirmed_guests = Invitado.objects.filter(confirmado=True)
+    # Preparar filas de canciones sugeridas (solo canción + artista)
+    songs_rows = []
     for guest in confirmed_guests:
         playlists = Playlist.objects.filter(invitacion__invitados=guest)
-        for playlist in playlists:
-            writer.writerow([guest.nombre, guest.apellido, playlist.song_name, playlist.artist_name])
+        for pl in playlists:
+            songs_rows.append({
+                'song_name': pl.song_name,
+                'artist_name': pl.artist_name or ''
+            })
 
+    generated_at = datetime.now().strftime('%Y-%m-%d %H:%M')
+
+    # Render templates to HTML strings
+    html_guests = render_to_string('export_confirmed_guests_list.html', {
+        'guests': confirmed_guests,
+        'generated_at': generated_at,
+    })
+    html_songs = render_to_string('export_suggested_songs.html', {
+        'songs': songs_rows,
+        'generated_at': generated_at,
+    })
+
+    # Helper: render HTML -> PDF bytes using WeasyPrint
+    def html_to_pdf_bytes(html_str):
+        # WeasyPrint accepts a string and returns bytes
+        pdf_bytes = HTML(string=html_str).write_pdf()
+        if not pdf_bytes:
+            raise ValueError('Error generando PDF con WeasyPrint')
+        return pdf_bytes
+
+    try:
+        pdf_guests = html_to_pdf_bytes(html_guests)
+        pdf_songs = html_to_pdf_bytes(html_songs)
+    except Exception as e:
+        return HttpResponse(f'Error al generar PDFs: {str(e)}', status=500)
+
+    # Empaquetar en ZIP en memoria
+    zip_io = io.BytesIO()
+    with zipfile.ZipFile(zip_io, mode='w', compression=zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr('invitados_confirmados.pdf', pdf_guests)
+        zf.writestr('canciones_sugeridas.pdf', pdf_songs)
+    zip_io.seek(0)
+
+    response = HttpResponse(zip_io.read(), content_type='application/zip')
+    response['Content-Disposition'] = 'attachment; filename="export_confirmed_guests_and_songs.zip"'
     return response

@@ -7,3 +7,4 @@ uvicorn==0.38.0
 whitenoise==6.11.0
 dj-database-url==1.0.0
 psycopg2-binary==2.9.6
+WeasyPrint

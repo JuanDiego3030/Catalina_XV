@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Canciones Sugeridas</title>
+  <style>
+    body { font-family: DejaVu Sans, Arial, sans-serif; font-size:12px; }
+    h1 { text-align: center; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #444; padding: 6px 8px; text-align: left; }
+    th { background: #f0f0f0; }
+    .small { font-size: 10px; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Canciones Sugeridas por Invitados</h1>
+  <p class="small">Generado: {{ generated_at }}</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Canción</th>
+        <th>Artista</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in songs %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ row.song_name }}</td>
+        <td>{{ row.artist_name|default:"" }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="3">No hay canciones sugeridas por invitados confirmados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
