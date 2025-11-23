@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,17 +79,17 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Conexión PostgreSQL usando los datos de Render
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cata_pvli',
+        'USER': 'cata_pvli_user',
+        'PASSWORD': 'j92Za5ffdN7LRI3mst2T9QQiJxrYEN2b',
+        'HOST': 'dpg-d4hfd1p5pdvs7396sjtg-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
-
-# If a DATABASE_URL environment variable is provided (Render managed DB), parse it
-DATABASE_URL = os.environ.get('DATABASE_URL')
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
 
 
 # Password validation
