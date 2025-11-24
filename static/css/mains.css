@@ -485,7 +485,7 @@ body {
 }
 
 .itinerary-time {
-  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  font-size: 0.65rem;
   color: #47c800;
   font-weight: 600;
   background: #f9f7f5;
@@ -788,7 +788,7 @@ body {
   }
 
   .itinerary-details {
-    padding: 0.31rem;
+    padding: 5px;
   }
 
   .guests-list,

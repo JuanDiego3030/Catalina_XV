@@ -33,7 +33,7 @@
         <div class="hero-overlay">
             <div class="hero-content">
                 <h1 class="hero-title">María Catalina</h1>
-                <h3>Mis VX Años</h3>
+                <h3>Mis XVAños</h3>
              
                 <p class="event-date">{{ invitacion.fecha|date:"d \d\e F Y"|upper }}</p>
                 
@@ -56,7 +56,7 @@
                     <p class="names">{{ invitacion.nombre }}</p>
                 </div>
                 
-                <p class="invitation-text">Quiero que seas parte de este momento tan especial en mi vida. Acompáñame a celebrar mis quince años.</p>
+                <p class="invitation-text">Quiero que seas parte de este momento tan especial en mi vida. Acompáñame a celebrar mis XV Años.</p>
                 
                 <!-- Countdown Timer -->
                 <div class="countdown-container" aria-live="polite" aria-atomic="true" aria-label="Cuenta regresiva para la celebración">
@@ -83,16 +83,16 @@
         <!-- Ceremony Section -->
         <section class="ceremony-section">
             <div class="section-content">
-                <h2 class="section-header">Misa de Accion de Gracias</h2>
+                <h2 class="section-header">Misa de Acción de Gracias</h2>
                 <div class="church-image-container">
                     <img src="{% static "images/iglesia-foto.jpg"%}" 
                          alt="Iglesia Santa Rosa De Lima" 
                          class="church-image">
                     
-                    <p class="ceremony-details">Se realizara en la Iglesia Santa Rosa de Lima</p>
-                    <p class="ceremony-time">20 de Diembre | 10am</p>
+                    <p class="ceremony-details">Se realizará en la Iglesia Santa Rosa de Lima</p>
+                    <p class="ceremony-time">20 de Diciembre | 10am</p>
                 </div>
-                <h2 class="section-header">Lugar de celebración de Quince Años</h2>
+                <h2 class="section-header">Recepción</h2>
                 <div class="ceremony-details">
                     <p class="ceremony-name">{{ invitacion.ubicacion.nombre }}</p>
                     <p class="ceremony-address">{{ invitacion.ubicacion.direccion }}</p>
@@ -190,8 +190,8 @@
                         </div>
                         <div class="itinerary-line"></div>
                         <div class="itinerary-details">
-                            <span class="itinerary-text">Ceremonia Religiosa</span>
-                            <span class="itinerary-time">3:00 PM</span>
+                            <span class="itinerary-text">Misa de Acción de Gracias</span>
+                            <span class="itinerary-time">10:00 AM</span>
                         </div>
                     </div>
 
@@ -202,18 +202,7 @@
                         <div class="itinerary-line"></div>
                         <div class="itinerary-details">
                             <span class="itinerary-text">Recepción</span>
-                            <span class="itinerary-time">5:30 PM</span>
-                        </div>
-                    </div>
-
-                    <div class="itinerary-item">
-                        <div class="itinerary-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="itinerary-line"></div>
-                        <div class="itinerary-details">
-                            <span class="itinerary-text">Sesión de Fotos</span>
-                            <span class="itinerary-time">6:00 PM</span>
+                            <span class="itinerary-time">7:30 PM</span>
                         </div>
                     </div>
 
@@ -224,9 +213,34 @@
                         <div class="itinerary-line"></div>
                         <div class="itinerary-details">
                             <span class="itinerary-text">Vals y Ceremonia</span>
-                            <span class="itinerary-time">7:00 PM</span>
+                            <span class="itinerary-time">8:00 PM</span>
                         </div>
                     </div>
+
+
+                    <div class="itinerary-item">
+                        <div class="itinerary-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <div class="itinerary-line"></div>
+                        <div class="itinerary-details">
+                            <span class="itinerary-text">Brindis</span>
+                            <span class="itinerary-time">8:30 PM</span>
+                        </div>
+                    </div>
+
+
+                    <div class="itinerary-item">
+                        <div class="itinerary-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="itinerary-line"></div>
+                        <div class="itinerary-details">
+                            <span class="itinerary-text">Sesión de Fotos</span>
+                            <span class="itinerary-time">9:00 PM</span>
+                        </div>
+                    </div>
+
 
                     <div class="itinerary-item">
                         <div class="itinerary-icon">
@@ -235,7 +249,7 @@
                         <div class="itinerary-line"></div>
                         <div class="itinerary-details">
                             <span class="itinerary-text">Cena</span>
-                            <span class="itinerary-time">8:00 PM</span>
+                            <span class="itinerary-time">9:00 PM</span>
                         </div>
                     </div>
 
@@ -246,18 +260,7 @@
                         <div class="itinerary-line"></div>
                         <div class="itinerary-details">
                             <span class="itinerary-text">Pastel</span>
-                            <span class="itinerary-time">9:00 PM</span>
-                        </div>
-                    </div>
-
-                    <div class="itinerary-item">
-                        <div class="itinerary-icon">
-                            <i class="fas fa-music"></i>
-                        </div>
-                        <div class="itinerary-line last"></div>
-                        <div class="itinerary-details">
-                            <span class="itinerary-text">Baile y Fiesta</span>
-                            <span class="itinerary-time">9:30 PM</span>
+                            <span class="itinerary-time">12:00 AM</span>
                         </div>
                     </div>
                 </div>
@@ -280,7 +283,7 @@
                 
                 </i>
                 <p class="dress-code-description" style="margin-top:6px">
-                    <strong>Nota:</strong> El color <span style="color:#2e7d32;font-weight:800">verde</span> está reservado para la <span style="color:#2e7d32;font-weight:800">quinceañera</span>.
+                    <strong>Nota:</strong> El color <span style="color:#2e7d32;font-weight:800">VERDE</span> está reservado para la <span style="color:#2e7d32;font-weight:800">QUINCEAÑERA</span>.
                 </p>
             </div>
         </section>
@@ -288,10 +291,10 @@
         <!-- Reservation Section -->
         <section class="reservation-section">
             <div class="section-content">
-                <h2 class="section-header">Recepción</h2>
+                <h2 class="section-header" style="font-family: 'Great Vibes'; font-size: 3  rem;">Recepción</h2>
                 <div class="location-info">
                     <p class="venue-name">{{ invitacion.ubicacion.direccion }}</p>
-                    <p class="venue-time">{{ invitacion.fecha|date:"d \d\e F" }} | 5:30 PM</p>
+                    <p class="venue-time">{{ invitacion.fecha|date:"d \d\e F" }} | 7:30 PM</p>
                     
                 </div>
                 <p class="reserve-text">Te hemos reservado para:</p>
