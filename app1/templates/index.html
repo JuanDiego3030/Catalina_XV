@@ -33,7 +33,7 @@
         <div class="hero-overlay">
             <div class="hero-content">
                 <h1 class="hero-title">María Catalina</h1>
-                <h3>Mis XVAños</h3>
+                <h3>Mis XV Años</h3>
              
                 <p class="event-date">{{ invitacion.fecha|date:"d \d\e F Y"|upper }}</p>
                 
@@ -91,26 +91,7 @@
                     
                     <p class="ceremony-details">Se realizará en la Iglesia Santa Rosa de Lima</p>
                     <p class="ceremony-time">20 de Diciembre | 10am</p>
-                </div>
-                <h2 class="section-header">Recepción</h2>
-                <div class="ceremony-details">
-                    <p class="ceremony-name">{{ invitacion.ubicacion.nombre }}</p>
-                    <p class="ceremony-address">{{ invitacion.ubicacion.direccion }}</p>
-                    <p class="ceremony-time">
-                        {% comment %}Only show time formats if fecha includes time (datetime).{% endcomment %}
-                        {% if invitacion.fecha.hour is not None %}
-                            {{ invitacion.fecha|date:"d \d\e F" }} | {{ invitacion.fecha|date:"g:i A" }}
-                        {% else %}
-                            {{ invitacion.fecha|date:"d \d\e F Y" }}
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="btn-container">
-                    <button class="button-primary" onclick="window.open('{{ invitacion.ubicacion.google_maps_url }}', '_blank')">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Ver Ubicación
-                    </button>
-                </div>
+                </div>  
             </div>
         </section>
 
@@ -128,7 +109,6 @@
                         </div>
                         <div class="timeline-description">
                             <h3>El Comienzo</h3>
-                            <p>Mi llegada al mundo, el inicio de esta hermosa aventura</p>
                         </div>
                     </div>
 
@@ -138,8 +118,7 @@
                             <div class="timeline-year">2013</div>
                         </div>
                         <div class="timeline-description">
-                            <h3>Primeros Pasos</h3>
-                            <p>Descubriendo el mundo con curiosidad y alegría</p>
+                            <h3>Mis primeras Aventura</h3>
                         </div>
                     </div>
 
@@ -149,8 +128,7 @@
                             <div class="timeline-year">2016</div>
                         </div>
                         <div class="timeline-description">
-                            <h3>Nuevas Aventuras</h3>
-                            <p>Mi primer día de escuela, haciendo nuevos amigos</p>
+                            <h3>Nuevas Experiencias</h3>
                         </div>
                     </div>
 
@@ -160,8 +138,7 @@
                             <div class="timeline-year">2020</div>
                         </div>
                         <div class="timeline-description">
-                            <h3>Creciendo</h3>
-                            <p>Descubriendo mis pasiones y talentos</p>
+                            <h3>Compartiendo Momentos en Familia</h3>
                         </div>
                     </div>
 
@@ -172,7 +149,6 @@
                         </div>
                         <div class="timeline-description">
                             <h3>Mis XV Años</h3>
-                            <p>Celebrando esta etapa especial de mi vida</p>
                         </div>
                     </div>
                 </div>
@@ -293,6 +269,7 @@
             <div class="section-content">
                 <h2 class="section-header" style="font-family: 'Great Vibes'; font-size: 3  rem;">Recepción</h2>
                 <div class="location-info">
+                    <p class="ceremony-name">{{ invitacion.ubicacion.nombre }}</p>
                     <p class="venue-name">{{ invitacion.ubicacion.direccion }}</p>
                     <p class="venue-time">{{ invitacion.fecha|date:"d \d\e F" }} | 7:30 PM</p>
                     
@@ -308,6 +285,12 @@
                             <li class="table-item" style="font-family: 'Great Vibes';">No hay mesas asociadas.</li>
                         {% endfor %}
                     </ul>
+                </div>
+                <div class="btn-container">
+                    <button class="button-primary" onclick="window.open('{{ invitacion.ubicacion.google_maps_url }}', '_blank')">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Ver Ubicación
+                    </button>
                 </div>
                 <div class="button-container">
                     <button class="button-confirm" data-bs-toggle="modal" data-bs-target="#confirmAttendanceModal">

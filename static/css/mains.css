@@ -240,7 +240,7 @@ body {
 /* Enhanced ceremony section */
 .ceremony-section {
   background: #f9f7f5;
-  padding: 5rem 0;
+  padding: 2rem 0;
 }
 
 .church-image-container {
@@ -326,7 +326,7 @@ body {
 /* Enhanced photo timeline with better responsive grid */
 .timeline-section {
   background: white;
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 
 .timeline-intro {
